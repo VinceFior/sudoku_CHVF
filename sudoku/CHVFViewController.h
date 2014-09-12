@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CHVFGridView.h"
 
-@interface CHVFViewController : UIViewController
+@interface CHVFViewController : UIViewController <GridViewDelegate>
 
 @end

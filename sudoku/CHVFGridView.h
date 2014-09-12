@@ -11,6 +11,10 @@
 @interface CHVFGridView : UIView
 
 - (void)setValueAtRow:(int)row col:(int)col to:(int)value;
-- (void)setTarget:(id)target action:(SEL)action;
+- (void)setDelegate:(id)delegate;
 
+@end
+
+@protocol GridViewDelegate
+- (void)gridCellSelectedAtRow:(NSNumber*)row col:(NSNumber*) col;
 @end

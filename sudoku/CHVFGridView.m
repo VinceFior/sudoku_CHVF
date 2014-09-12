@@ -10,8 +10,7 @@
 
 @interface CHVFGridView () {
     NSMutableArray* _cells;
-    id _target;
-    SEL _action;
+    id <GridViewDelegate> _delegate;
 }
 @end
 
@@ -72,13 +71,12 @@
     int buttonTag = button.tag;
     int row = buttonTag / 10;
     int col = buttonTag % 10;
-    [_target performSelector:_action withObject:[NSNumber numberWithInt:row] withObject:[NSNumber numberWithInt:col]];
+    [_delegate gridCellSelectedAtRow:[NSNumber numberWithInteger:row] col:[NSNumber numberWithInteger:col]];
 }
 
-- (void)setTarget:(id)target action:(SEL)action
+- (void)setDelegate:(id)delegate
 {
-    _target = target;
-    _action = action;
+    _delegate = delegate;
 }
 
 @end

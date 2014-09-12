@@ -7,7 +7,6 @@
 //
 
 #import "CHVFViewController.h"
-#import "CHVFGridView.h"
 
 int initialGrid[9][9]={
     {7,0,0,4,2,0,0,0,9},
@@ -43,7 +42,7 @@ int initialGrid[9][9]={
         }
     }
     [self.view addSubview:_gridView];
-    [_gridView setTarget:self action:@selector(gridCellSelectedAtRow:col:)];
+    [_gridView setDelegate:self];
 }
 
 - (void)gridCellSelectedAtRow:(NSNumber*)row col:(NSNumber*) col
