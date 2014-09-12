@@ -10,6 +10,8 @@
 
 @interface CHVFGridView () {
     NSMutableArray* _cells;
+    id _target;
+    SEL _action;
 }
 @end
 
@@ -45,7 +47,7 @@
             [rowArray addObject:button];
             
             // create target for button
-            [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(cellSelected:) forControlEvents:UIControlEventTouchUpInside];
         }
         [_cells addObject:rowArray];
     }
@@ -63,10 +65,19 @@
     }
 }
 
-- (void)buttonPressed:(id)sender
+- (void)cellSelected:(id)sender
 {
     UIButton* button = (UIButton*) sender;
-    NSLog(@"Button %d was pressed", button.tag);
+    int buttonTag = button.tag;
+    int row = buttonTag / 10;
+    int col = buttonTag % 10;
+    [_target performSelector:_action withObject:[NSNumber numberWithInt:row] withObject:[NSNumber numberWithInt:col]];
+}
+
+- (void)setTarget:(id)target action:(SEL)action
+{
+    _target = target;
+    _action = action;
 }
 
 @end

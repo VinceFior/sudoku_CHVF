@@ -11,5 +11,6 @@
 @interface CHVFGridView : UIView
 
 - (void)setValueAtRow:(int)row col:(int)col to:(int)value;
+- (void)setTarget:(id)target action:(SEL)action;
 
 @end

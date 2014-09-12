@@ -43,6 +43,12 @@ int initialGrid[9][9]={
         }
     }
     [self.view addSubview:_gridView];
+    [_gridView setTarget:self action:@selector(gridCellSelectedAtRow:col:)];
+}
+
+- (void)gridCellSelectedAtRow:(NSNumber*)row col:(NSNumber*) col
+{
+    NSLog(@"The button is pressed, with row %@ and col %@", row, col);
 }
 
 - (void)didReceiveMemoryWarning
