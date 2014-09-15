@@ -9,6 +9,7 @@
 #import "CHVFViewController.h"
 #import "CHVFGridView.h"
 
+// For now, the initial grid is hardcoded
 int initialGrid[9][9]={
     {7,0,0,4,2,0,0,0,9},
     {0,0,9,5,0,0,0,0,4},
@@ -35,19 +36,22 @@ int initialGrid[9][9]={
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // Initialize _gridView and set initial values from initialGrid
     _gridView = [[CHVFGridView alloc] initWithFrame:self.view.frame];
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) {
-            int value = initialGrid[col][row];
+            int value = initialGrid[row][col];
             [_gridView setValueAtRow:row col:col to:value];
         }
     }
     [self.view addSubview:_gridView];
+    
     [_gridView setTarget:self action:@selector(gridCellSelectedAtRow:col:)];
 }
 
 - (void)gridCellSelectedAtRow:(NSNumber*)row col:(NSNumber*) col
 {
+    // For now, simply display row and col info of the cell selected
     NSLog(@"The button is pressed, with row %@ and col %@", row, col);
 }
 
