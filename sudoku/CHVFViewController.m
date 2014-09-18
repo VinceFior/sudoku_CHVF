@@ -36,8 +36,16 @@ int initialGrid[9][9]={
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // Create grid frame
+    CGRect frame = self.view.frame;
+    float framePortion = 0.8;
+    CGFloat x = CGRectGetWidth(frame) * (1 - framePortion) / 2;
+    CGFloat y = CGRectGetHeight(frame) * (1 - framePortion) / 2;
+    CGFloat size = MIN(CGRectGetWidth(frame), CGRectGetHeight(frame)) * framePortion;
+    CGRect gridFrame = CGRectMake(x, y, size, size);
+    
     // Initialize _gridView and set initial values from initialGrid
-    _gridView = [[CHVFGridView alloc] initWithFrame:self.view.frame];
+    _gridView = [[CHVFGridView alloc] initWithFrame:gridFrame];
     for (int row = 0; row < 9; row++) {
         for (int col = 0; col < 9; col++) {
             int value = initialGrid[row][col];
